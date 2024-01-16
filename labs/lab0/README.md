@@ -15,16 +15,16 @@ Created a sub-folder `labs/lab0` with a README.md file to write the report in Ma
 
 ## The lab's overview
 
-In this lab we have covered setting up softwares in the Ubuntu Virtaual Machine and setting up git repository in the Virtual MAchine and performing git operation on our private repository
+In this lab we have covered setting up softwares in the Ubuntu Virtual Machine and setting up git repository in the Virtual MAchine and performing git operation on our private repository
 
 [https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab0](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab0)
 
 ## Part I - Ubuntu Virtual Machine & Software Installation
 
 Steps-
-Opened the sand box
-Deployed my virtual machine
-Installed the softwares required as in the pdf shared using apt command.
+1,Opened the sand box
+2,Deployed my virtual machine
+3,Installed the softwares required as in the pdf shared using apt command.
 
 
 ### Apache Web Server Testing
