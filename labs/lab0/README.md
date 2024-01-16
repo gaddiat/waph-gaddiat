@@ -58,3 +58,5 @@ First created SSH using the ubuntu terminal and then using the SSH code clone th
 Use the `pandoc` tool to generate the PDF report for submission from the `README.md` file, and ensure the report and contents are rendered properly.
 
 The PDF file should be named `your-username-waph-lab0.pdf`, e.g., `phungph-waph-lab0.pdf` 
+
+I have used the 'pandoc -f markdown-implicit_figures README.md --pdf-engine=xelatex -t latex  -o lab0.pdf' command to generate by pdf as I was getting an error.
