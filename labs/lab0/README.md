@@ -31,7 +31,7 @@ Installed the softwares required as in the pdf shared using apt command.
 
 After installing the Apache sever 2, finding out my ip address and using it in the browser to check Apache server 
 
-(images/apache.png)
+![Apache Screenshot](images/apache.png)
 
 ## Part II - git Repositories and Exercises
 
@@ -39,7 +39,7 @@ After installing the Apache sever 2, finding out my ip address and using it in t
 
 Using git commands and ssh cloned the repository.
 
-(images/git clone.png)
+![git clone](images/gitclone.png)
 
 ### Private Repository
 
@@ -49,9 +49,9 @@ Created a private repsoitory from the github website.
 
 First created SSH using the ubuntu terminal and then using the SSH code clone the repository in the machine. performed changes on README markdown file.
 
-(images/git cp.png)
+![git commit and push](images/gitcp.png)
 
-(images/git cp1.png)
+![git commit and push](images/gitcp1.png)
 
 ## Submission
 
