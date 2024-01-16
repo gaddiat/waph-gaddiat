@@ -9,45 +9,49 @@
 This lab is covered in Lecture 2, with preparation homework in Lecture 1. In Part I, you need to deploy an Ubuntu 22.04 Virtual Machine on the provided online environment and install software and applications. In Part II, you will clone the course repository and your private repository and complete git exercises to write the report. 
 
 
-
 ## Report 
 
-You need to create a sub-folder `labs/lab0` with a README.md file to write the report in Markdown format and generate the report to PDF using the `pandoc` application. Your report should follow the template provided in Lecture 2 ([https://github.com/phungph-uc/waph/blob/main/README-template.md](https://github.com/phungph-uc/waph/blob/main/README-template.md)) which should include the course name and instructor, your name and email together with your headshot (150x150 pixels), and then the following sub-sections:
+Created a sub-folder `labs/lab0` with a README.md file to write the report in Markdown format and generated the report to PDF using the `pandoc` application.
 
 ## The lab's overview
 
-Write an overview of the lab.
-
-Also, include a direct clickable link to the lab folder on GitHub.com so that it can be viewed when grading, for example,  [https://github.com/phungph-uc/waph-phungph/tree/main/labs/lab0](https://github.com/phungph-uc/waph-phungph/tree/main/labs/lab0).
-
 In this lab we have covered setting up softwares in the Ubuntu Virtaual Machine and setting up git repository in the Virtual MAchine and performing git operation on our private repository
 
-
+[https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab0](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab0)
 
 ## Part I - Ubuntu Virtual Machine & Software Installation
 
-A summary of steps you have performed to deploy your Ubuntu 22.04 virtual machine on CECH Sandbox ([https://sandbox02.cech.uc.edu/vcac](https://sandbox02.cech.uc.edu/vcac)) and install the required software and applications. 
+Steps-
+Opened the sand box
+Deployed my virtual machine
+Installed the softwares required as in the pdf shared using apt command.
 
-No screenshot is required in this sub-section; however, it is welcome, and detailed information is encouraged.
 
 ### Apache Web Server Testing
 
-Include a **screenshot** to demonstrate that the Apache Web Server is running properly as it can be accessed in Google Chrome within your Ubuntu VM (with proper name as required) using its IP address.
+After installing the Apache sever 2, finding out my ip address and using it in the browser to check Apache server 
 
+(images/apache.png)
 
 ## Part II - git Repositories and Exercises
 
 ### The course repository
 
-Include a **screenshot** to show that you have cloned the course repository into the home directory in your VM.
+Using git commands and ssh cloned the repository.
+
+(images/git clone.png)
 
 ### Private Repository
 
-Describe critical steps to create your private repository on [GitHub.com](https://github.com) and share it with `phung-waph`. Also, include this repository's full URL, e.g., [https://github.com/phungph-uc/waph-phungph.git](https://github.com/phungph-uc/waph-phungph.git).
+Created a private repsoitory from the github website.
 
-Summarize hands-on exercises, such as generating SSH keys, adding the public key to your GitHub account, cloning your remote repository into your VM, and editing the README.md following the provided template with my headshot.
+[https://github.com/gaddiat/waph-gaddiat.git](https://github.com/gaddiat/waph-gaddiat.git)
 
-Include a **screenshot** to illustrate that you committed the changes from your VM to your remote repository.
+First created SSH using the ubuntu terminal and then using the SSH code clone the repository in the machine. performed changes on README markdown file.
+
+(images/git cp.png)
+
+(images/git cp1.png)
 
 ## Submission
 
