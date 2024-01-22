@@ -123,4 +123,4 @@ b. I used the curl command to send the post request to the echo php with the dat
 ![b1](images/Screenshot18.png)  
 ![b2](images/Screenshot19.png)  
 
-c. The HTTP get request has data in the url but the HTTP post request doesn't have the data in the url, the Responses of I got to both the request are the same.
+c. The HTTP get request has data in the url but the HTTP post request doesn't have the data in the url, the Responses that I got to both the request are the same.
