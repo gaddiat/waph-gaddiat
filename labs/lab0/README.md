@@ -26,9 +26,6 @@ This is a private repository for Amit Gaddi to store all code from the course. T
 
 # Lab 0 - Development Environment Setup 
 
-## Overview 
-
-This lab is covered in Lecture 2, with preparation homework in Lecture 1. In Part I, you need to deploy an Ubuntu 22.04 Virtual Machine on the provided online environment and install software and applications. In Part II, you will clone the course repository and your private repository and complete git exercises to write the report. 
 
 ## The lab's overview
 
