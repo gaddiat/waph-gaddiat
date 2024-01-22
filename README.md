@@ -10,7 +10,7 @@
 
 **Short-bio**: Amit Gaddi has keen interests in IT. 
 
-![Amit's headshot](images/Pic.jpeg)
+![Amit's headshot](images/Pic.jpg)
 
 ## Repository Information
 
@@ -23,6 +23,7 @@ This is a private repository for Amit Gaddi to store all code from the course. T
 [Hands-on exercises in lectures](labs) 
 
   - [Lab 0](labs/lab0): Development Environment Setup 
+
 
 ### Hackations
 

@@ -22,18 +22,13 @@ This is a private repository for Amit Gaddi to store all code from the course. T
 
 [Hands-on exercises in lectures](labs) 
 
-  - [Lab 0](labs/lab0): Development Environment Setup 
+  - [Lab 0](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab0): Development Environment Setup
 
 # Lab 0 - Development Environment Setup 
 
 ## Overview 
 
 This lab is covered in Lecture 2, with preparation homework in Lecture 1. In Part I, you need to deploy an Ubuntu 22.04 Virtual Machine on the provided online environment and install software and applications. In Part II, you will clone the course repository and your private repository and complete git exercises to write the report. 
-
-
-## Report 
-
-Created a sub-folder `labs/lab0` with a README.md file to write the report in Markdown format and generated the report to PDF using the `pandoc` application.
 
 ## The lab's overview
 
@@ -44,9 +39,9 @@ In this lab we have covered setting up softwares in the Ubuntu Virtual Machine a
 ## Part I - Ubuntu Virtual Machine & Software Installation
 
 Steps-
-1,Opened the sand box
-2,Deployed my virtual machine
-3,Installed the softwares required as in the pdf shared using apt command.
+1,Opened the sand box  
+2,Deployed my virtual machine  
+3,Installed the softwares required as in the pdf shared using apt command.  
 
 
 ### Apache Web Server Testing
@@ -74,11 +69,5 @@ First created SSH using the ubuntu terminal and then using the SSH code clone th
 ![git commit and push](images/gitcp.png)
 
 ![git commit and push](images/gitcp1.png)
-
-## Submission
-
-Used the `pandoc` tool to generate the PDF report for submission from the `README.md` file, and ensure the report and contents are rendered properly.
-
-The PDF file should be named `your-username-waph-lab0.pdf`, e.g., `phungph-waph-lab0.pdf` 
 
 I have used the 'pandoc -f markdown-implicit_figures README.md --pdf-engine=xelatex -t latex  -o lab0.pdf' command to generate by pdf as I was getting an error.

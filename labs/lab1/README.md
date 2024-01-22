@@ -20,7 +20,7 @@ This is a private repository for Amit Gaddi to store all code from the course. T
 
 # Lab 1 - Foundations of the Web 
 
-[Lab1 link](https://github.com/phungph-uc/waph/tree/main/labs/lab1)
+[Lab1](https://github.com/phungph-uc/waph/tree/main/labs/lab1)
 
 ## The lab's overview
 
@@ -102,7 +102,7 @@ Security issue with this is, it is vulnerable to security threats, particularly 
 Included file `echo.php`:
    ```C
       <?php
-	echo $_REQUESTI"data"];
+	    echo $_REQUESTI"data"];
       ?>
    ```
 
