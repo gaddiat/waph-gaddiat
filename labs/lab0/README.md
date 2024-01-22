@@ -10,7 +10,7 @@
 
 **Short-bio**: Amit Gaddi has keen interests in IT. 
 
-![Amit's headshot](images/Pic.jpeg)
+![Amit's headshot](images/Pic.jpg)
 
 ## Repository Information
 
