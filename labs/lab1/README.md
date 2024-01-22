@@ -14,7 +14,7 @@
 
 ## Repository Information
 
-Repository's URL: [https://github.com/phungph-uc/waph.git](https://github.com/gaddiat/waph-gaddiat.git)
+Repository's URL: [https://github.com/gaddiat-uc/waph.git](https://github.com/gaddiat/waph-gaddiat.git)
 
 This is a private repository for Amit Gaddi to store all code from the course. The organization of this repository is as follows.
 
