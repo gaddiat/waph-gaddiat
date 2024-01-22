@@ -14,13 +14,13 @@
 
 ## Repository Information
 
-Repository's URL: [https://github.com/phungph-uc/waph.git](https://github.com/phungph-uc/waph.git)
+Repository's URL: [https://github.com/phungph-uc/waph.git](https://github.com/gaddiat/waph-gaddiat.git)
 
 This is a private repository for Amit Gaddi to store all code from the course. The organization of this repository is as follows.
 
 # Lab 1 - Foundations of the Web 
 
-[Lab1](https://github.com/phungph-uc/waph/tree/main/labs/lab1)
+[Lab1](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab1)
 
 ## The lab's overview
 
