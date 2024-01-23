@@ -41,12 +41,12 @@ I launched Wireshark with a command and started capturing data using 'any.' Afte
 I initiated Wireshark using the command and commenced capturing data with 'any.' Subsequently, I entered the telnet command in my Ubuntu terminal to interact with the website. Wireshark diligently captured the HTTP request and response. Employing a filter, we isolated the HTTP-related data, allowing us to inspect the specific HTTP request, response, and associated stream.  
 
 
-  1. A screenshot of your terminal showing the HTTP Request (you typed) and HTTP response from the server.  
+  1.  
 ![1 screenshot](images/Screenshot20.png)  
-  2. A screenshot of the HTTP Request message (you typed in telnet above) in Wireshark as in Task 1. Is there any difference between this HTTP Request message and the one the browser sent in Task 1? Hints: What fields are missing in this request compared to the one the browser sent?  
+  2.  
   In the task 1 more fields were sent like user-agent, browser details, language, encoding and connection that are not found in the request sent from terminal.  
 ![2 screenshot](images/Screenshot21.png)  
-  3. A screenshot of the HTTP Response message in Wireshark that the server responded to your request. Is there any difference between this HTTP Response message and the one in Task 1?  
+  3.    
   The response data is mostly same but one of the fields are more in the task1 response that is content-encoding.  
 ![3 screenshot](images/Screenshot22.png)  
 
@@ -63,7 +63,7 @@ I initiated Wireshark using the command and commenced capturing data with 'any.'
    b. I wrote a basic C program that include a html content which has Header and Paragraph tags and as done in the above task compiled, ran, copied the file in cgi-bin and then opened in the browser.  
    
    Included file `index.c`:  
-   ```C
+```c
    #include <stdio.h>
    int main(void){
    printf("Content-Type: text/html\n\n");
@@ -78,8 +78,8 @@ I initiated Wireshark using the command and commenced capturing data with 'any.'
    printf("</body>\n");
    printf("</html>\n");
    return 0;
-}
-   ```
+   }
+```
 
 
 ![b1](images/Screenshot7.png)  
@@ -100,11 +100,11 @@ b. Similar to the above I created a php program and which had echo to get the re
 Security issue with this is, it is vulnerable to security threats, particularly Cross-Site Scripting (XSS) attacks caused by a lack of input validation and sanitization for user input saved in $_REQUEST.  
 
 Included file `echo.php`:
-   ```C
+```c
       <?php
 	    echo $_REQUESTI"data"];
       ?>
-   ```
+```
 
 ![b1](images/Screenshot13.png)  
 ![b2](images/Screenshot14.png)  
@@ -123,4 +123,4 @@ b. I used the curl command to send the post request to the echo php with the dat
 ![b1](images/Screenshot18.png)  
 ![b2](images/Screenshot19.png)  
 
-c. The HTTP get request has data in the url but the HTTP post request doesn't have the data in the url, the Responses that I got to both the request are the same.
+c. The HTTP get request has data in the url but the HTTP post request doesn't have the data in the url, the Responses that I got to both the request are the same.s
