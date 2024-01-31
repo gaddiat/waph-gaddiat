@@ -35,7 +35,7 @@ In this lab we have covered setting up softwares in the Ubuntu Virtual Machine a
 
 ## Part I - Ubuntu Virtual Machine & Software Installation
 
-Steps-
+Steps-  
 1,Opened the sand box  
 2,Deployed my virtual machine  
 3,Installed the softwares required as in the pdf shared using apt command.  
