@@ -41,7 +41,7 @@ In this part of task 1, I developed a simple HTML page which included the Course
 
 ####  b. Simple JavaScript (15 pts)  
 
-In this part, I used Inline JS to add a current date/time in my HTML page which displayed the time and date when clicked on it, then using the <script> tag I generated a digital clock moreover I created a JS file email.js which was used to show/ hide my email ID when clicked on it and take to me the mail page in addition to that using JS I created an analog digital clock using the function `drawClock()`.  
+In this part, I used Inline JS to add a current date/time in my HTML page which displayed the time and date when clicked on it, then using the `<script>` tag I generated a digital clock moreover I created a JS file email.js which was used to show/ hide my email ID when clicked on it and take to me the mail page in addition to that using JS I created an analog digital clock using the function `drawClock()`.  
 
 ![HTTP request](images/Screenshot6.png)  
 ![HTTP request](images/Screenshot7.png)  
@@ -57,9 +57,26 @@ In this part, I used Inline JS to add a current date/time in my HTML page which 
 ![HTTP request](images/Screenshot17.png)  
 
 
+
+Included file `email.js`
+```javascript	
+var shown = false;
+function showhideEmail(){
+	if (shown){
+		document.getElementById('email').innerHTML = "show my email";
+		shown = false;
+	}else{
+
+		var myemail = "<a href='mailto:gaddiat"+ "@" +
+
+"ucmail.uc.edu'>gaddiat" + "@" + "ucmail.uc.edu</a>";
+
+document.getElementById('email').innerHTML= myemail;
+
+```  
+
 ### Task 2: Ajax, CSS, jQuery, and Web API integration
 
-_Ajax, CSS, and jQuery exercises below are covered in Lecture 5; Web API integration is covered in Lecture 6._
 
 ####  a. Ajax (7.5 pts)
 
@@ -111,3 +128,166 @@ Here first I created a new button and for that button I wrote a JS code to use t
 ![HTTP request](images/Screenshot35.png)  
 ![HTTP request](images/Screenshot36.png)  
 
+
+Included file `waph-gaddiat.html`  
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>WAPH-Amit Gaddi</title>
+
+	<style>
+	.button {
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		padding: 5px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 12px;
+		margin: 4px 2px;
+		cursor: pointer;
+	}
+
+	.round {border-radius: 8px;}
+
+	#response {background-color: #ff9800;}
+
+</style>
+<link rel="stylesheet" href=http://waph-uc.github.io/style1.css>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id ='top'>
+	<h1>Web Application Programming and Hacking</h1>
+	<h2>Front-end web development lab</h2>
+	<h3>Instructor: Phu Phung</h3>
+</div>
+<div id="menubar">
+	<h3>student: Amit Gaddi</h3>
+	<div id="email" onclick="showhideEmail()">Show my email</div>
+	<script src="email.js"></script>
+	<img src="images/Pic.jpg" alt="My headshot" width="50">
+	<div id = "digit-clock"></div>
+	<canvas id ="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+	<script src="https://waph-uc.github.io/clock.js"></script>
+	<script>
+		function displayTime(){
+			document.getElementById('digit-clock').innerHTML="current time: " + new Date();
+		}
+		setInterval(displayTime, 500);
+
+		var canvas = document.getElementById("analog-clock");
+		var ctx = canvas.getContext("2d");
+		var radius = canvas.height/2;
+		ctx.translate(radius, radius);
+		radius = radius * 0.90
+		setInterval(drawClock, 1000);
+
+		function drawClock() {
+			drawFace(ctx, radius);
+			drawNumbers(ctx, radius);
+			drawTime(ctx, radius);
+		}
+
+		function getEcho() {
+			var input = document.getElementById("data").value;
+			if (input.length==0) {
+				return;
+			}
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200){
+					console.log("Received data ="+xhttp.responseText);
+					document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
+				}
+			}
+			xhttp.open("GET","echo.php?data="+input, true);
+			xhttp.send();
+			document.getElementById("data").value="";
+		}
+
+		function jQueryAjax(){
+			var input =$('#data').val();
+			if (input.length==0) return;
+			$.get("echo.php?data="+input,function(result){
+				$('#response').html("Response fromm server:"+ result);
+			});
+			$('#data').val("");
+		}
+
+		function jQueryAjaxPost(){
+			var input =$('#data').val();
+			if (input.length==0) return;
+			$.get("echo.php",{data:input},function(result){
+				$('#response').html("Response fromm server:"+ result);
+			});
+			$('#data').val("");
+		}
+
+		$.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result){
+			console.log("From jokeAPI:" + JSON.stringify(result));
+			$("#response").html("A Programming joke of the day:" +result.joke)
+		})
+
+		async function guessAge(name){
+			const response = await fetch("https://api.agify.io/?name="+name);
+			const result = await response.json();
+			$("#response").html("Hi " + name +", your age should be " + result.age);
+		}
+
+	</script>
+
+</div>
+
+
+<div id="Main">
+<p>A simple HTML page</p>
+Using the <a href="http://www.w3schools.com/html" target="_blank">W#Schoools template</a>
+<hr>
+<b>Interaction with forms</b>
+<div>
+	<i>
+		From with an HTTP GET Request
+	</i>
+	<form action="/echo.php" method="GET">
+		Your input: <input name="data">
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+<div>
+	<i>
+		From with an HTTP POST Request
+	</i>
+	<form action="/echo.php" method="POST" name="echo_post">
+		Your input: <input name="data" onkeypress="console.log('You have pressed a key')">
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+<div>
+	<i>
+		Ajax Request
+	</i><br>
+	your input:
+	<input name="data" onkeypress="console.log('You have pressed a key')" id="data">
+		<input class= "button round" type="button" value="Ajax Echo" onclick="getEcho()">
+		<input class= "button round" type="button" value="jQuery Ajax GET Echo" onclick="jQueryAjax()">
+		<input class= "button round" type="button" value="jQuery Ajax POST Echo" onclick="jQueryAjaxPost()">
+		<input class= "button round" type="button" value="Guess age" onclick="guessAge($('#data').val())">
+		<div id="response"></div>
+</div>
+<hr>
+<b>Experiments with JS code</b><br>
+<i>Inlined JS</i>
+<div id="date" onclick="document.getElementById('date').innerHTML=Date()">Click here to show Date()</div>
+
+</div>
+</body>
+</html>
+
+```
