@@ -1,3 +1,3 @@
 <?php
-	echo $_REQUEST["data"];
+	echo htmlentities($_REQUEST["data"]);
 ?>
