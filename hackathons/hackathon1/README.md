@@ -31,15 +31,6 @@ In the task 1 I used `alert()` to display my name when seven layers of reflected
 There are seven levels of reflected cross-site scripting attacks on
 [http://waph-hackathon.eastus.cloudapp.azure.com/xss/](http://waph-hackathon.eastus.cloudapp.azure.com/xss/)
 
-
-For each level of attack, you must demonstrate success with a full
-URL screenshot with (i) injected XSS to display your name
-using `alert()`, and (ii) the payload of the attack inspected in
-the browser. The expected screenshot is illustrated in Lecture 8 and the attached slides.
-
-_For each level 2-6, you have to guess the core source code of the `echo.php`
-web application, i.e., where the vulnerability is exploited (2 pts each)_
-
 +  Level 0:
 
 ```js
@@ -81,6 +72,9 @@ Included file `Level2.html`
 
 ```
 
+Code gues - A cross-site scripting (XSS) vulnerability is most likely caused by inadequate input sanitization in the echo.php web application. By submitting the form, an attacker can use the vulnerability to insert malicious JavaScript code into the webpage. XSS attacks can be launched against this application since the input field is pre-populated with a script tag that calls an alert function. The input from the form is probably taken by echo.php's core source code and echoed back to the browser without being properly sanitized, enabling the injected script to run in the context of the page.
+
+
 ![Screenshot](images/Screenshot2.png)   
 
 +  Level 3:
@@ -89,6 +83,11 @@ Included file `Level2.html`
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level3/echo.php?input=%3Csc%3Cscript%3Eript%3Ealert(%27level-3%20hacked%20by%20Amit%20Gaddi%27)%3C/sc%3C/script%3Eript%3E>
 
 
+Code guess - The issue in echo.php is that it does not validate or sanitize input. The script simply echoes user-supplied input without filtering, allowing malicious users to inject arbitrary HTML and JavaScript code, resulting in a Cross-Site Scripting (XSS) vulnerability.
+
+```js
+<input><script>alert('level-3 hacked by Amit Gaddi')</script>
+```
 
 
 ![Screenshot](images/Screenshot3.png)   
@@ -98,7 +97,12 @@ Included file `Level2.html`
 
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22alert(%27Level%204%20:%20Hacked%20by%20Amit%20Gaddi%27)%22%3E>
 
+Code guess - 
+The vulnerability in echo.php is most likely caused by poor input validation and sanitation. By immediately reflecting user-supplied information into HTML output without sufficient filtering, the script allows attackers to inject malicious code, as shown in the provided payload. Specifically, the script fails to properly sanitize the "input" element, allowing attackers to execute arbitrary JavaScript code via the onerror attribute of an HTML image tag.
 
+```js
+<input src=".." onerror="alert('Level 4 : Hacked by Amit Gaddi')">
+```
 
 
 ![Screenshot](images/Screenshot4.png)   
@@ -108,6 +112,14 @@ Included file `Level2.html`
 
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22%5Cu0061lert(%27Level%205:%20Hacked%20By%20Amit%20Gaddi%27)%22%3E>
 
+
+Code guess - 
+The vulnerability in echo.php is most likely caused by poor handling of user input. The given payload attempts to exploit this vulnerability by inserting JavaScript code into the onerror property of an HTML image tag. The payload uses Unicode escape sequences (\u0061) to obfuscate the alert() function call, allowing it to avoid specific filters or detection methods. This suggests that the vulnerability stems from the script's failure to properly sanitize and validate user input, allowing attackers to execute arbitrary JavaScript code on the website.
+
+
+```js
+<img src=".." onerror="\u0061lert('Level 5: Hacked By Amit Gaddi')">
+```
 
 
 
@@ -120,6 +132,15 @@ Included file `Level2.html`
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseenter=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22>  
 
 
+Code guess - 
+The vulnerability in echo.php appears to be caused by incorrect handling of user input. The given payload exploits this vulnerability by injecting JavaScript code into the URL route, specifically the onmouseover attribute of an HTML element. This demonstrates that the script does not effectively validate or sanitize input data, allowing attackers to execute arbitrary JavaScript code.
+
+
+
+```js
+"%20onmouseenter="alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')
+```
+
 
 
 
@@ -130,9 +151,20 @@ Included file `Level2.html`
 
 ### Task 2. Defenses: (15 pts) 
 
+For Labs 1 and 2, I used XSS protection techniques and input validation to fix security flaws in our code. To stop XSS attacks, I concentrated on validating and sanitizing user input for `echo.php`. I discovered external input data channels, confirmed the input data met specific requirements, and correctly encoded it to thwart XSS attacks in the current front-end prototype from Lab 2. Through these assignments, I improved codebase's security, expanded my knowledge of security best practices in web development, and acquired hands-on experience with security testing and mitigation.
 
 
 + echo.php (from Lab 1) (3 pts)
+
+
+![Screenshot](images/Screenshot7.png)  
+
+
+![Screenshot](images/Screenshot8.png)  
+
+
+![Screenshot](images/Screenshot9.png)  
+
 
 
 Included file `echo.php`
@@ -148,12 +180,62 @@ Included file `echo.php`
   
 + Current front-end prototype (Lab 2) (12 pts): identify external input data channels, where you must validate the data before using it, and encode the data before displaying/injecting in the front-end interface, i.e., webpage
 
-For each revision, commit and push the code to GitHub with an appropriate message, and capture a screenshot on GitHub of that commit to illustrate the code revision (GitHub -> Code -> xx commits ->
-click on the commit you revised the code). The expected screenshot is illustrated in Lecture 8 and the attached slides.
+Included code snippet of file `email.js`
+```js
+ // Validate the email data
+        if (typeof myemail !== "undefined" && myemail !== null && myemail.trim() !== "") {
+            myemail = "<a href='mailto:" + myemail + "'>" + myemail + "</a>";
+        } else {
+            myemail = "Email data is not available";
+        }
 
 ```
 
+![Screenshot](images/Screenshot10.png)
 
 
+![Screenshot](images/Screenshot11.png)
+
+Included code snippets of file `waph-gaddiat.html`
+
+
+Input Validation & Encoding-
+```js
+function validateForm(inputData) {
+                  var inputData = document.getElementById(inputData).value;
+                  if (!inputData) {
+                      console.log("Input is null or empty");
+                      return false;
+                  }
+                  return true;
+              }
+
+              function encodeInput(input) {
+                const encoded = document.createElement('div');
+                encoded.innerText = input;
+                return encoded.innerHTML;
+            }
+
+```
+
+```html
+
+<div>
+          <i>Form with an HTTP GET Request</i>
+          <form action="/echo.php" method="GET" onsubmit="return validateForm('GETData')">
+            Your input:<input type="text" id="GETData" name="data">
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
+```
+
+```js
+async function guessAge(name){
+              if (name.length == 0) return;
+              const response = await fetch("https://api.agify.io/?name="+encodeInput(name));
+              const result = await response.json();
+              $("#response").html("Hi " + encodeInput(name) + ", your age should be " + encodeInput(result.age));
+            }
 
 ```
