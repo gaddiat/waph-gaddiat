@@ -72,7 +72,7 @@ Included file `Level2.html`
 
 ```
 
-Code gues - A cross-site scripting (XSS) vulnerability is most likely caused by inadequate input sanitization in the echo.php web application. By submitting the form, an attacker can use the vulnerability to insert malicious JavaScript code into the webpage. XSS attacks can be launched against this application since the input field is pre-populated with a script tag that calls an alert function. The input from the form is probably taken by echo.php's core source code and echoed back to the browser without being properly sanitized, enabling the injected script to run in the context of the page.
+Code gues - A cross-site scripting (XSS) vulnerability is most likely caused by inadequate input sanitization in the echo.php web application. By submitting the form, an attacker can use the vulnerability to insert malicious JavaScript code into the webpage. XSS attacks can be launched against this application since the input field is pre-populated with a script tag that calls an alert function. The input from the form is probably taken by echo.php's core source code and echoed back to the browser without being properly sanitized, enabling the injected script to run in the context of the page. In short as it was post request so I injected the input by creating a new form
 
 
 ![Screenshot](images/Screenshot2.png)   
@@ -83,7 +83,7 @@ Code gues - A cross-site scripting (XSS) vulnerability is most likely caused by 
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level3/echo.php?input=%3Csc%3Cscript%3Eript%3Ealert(%27level-3%20hacked%20by%20Amit%20Gaddi%27)%3C/sc%3C/script%3Eript%3E>
 
 
-Code guess - The issue in echo.php is that it does not validate or sanitize input. The script simply echoes user-supplied input without filtering, allowing malicious users to inject arbitrary HTML and JavaScript code, resulting in a Cross-Site Scripting (XSS) vulnerability.
+Code guess - The issue in echo.php is that it does not validate or sanitize input. The script simply echoes user-supplied input without filtering, allowing malicious users to inject arbitrary HTML and JavaScript code, resulting in a Cross-Site Scripting (XSS) vulnerability. In short the script tag will be removed.
 
 ```js
 <input><script>alert('level-3 hacked by Amit Gaddi')</script>
@@ -98,7 +98,7 @@ Code guess - The issue in echo.php is that it does not validate or sanitize inpu
 <http://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22alert(%27Level%204%20:%20Hacked%20by%20Amit%20Gaddi%27)%22%3E>
 
 Code guess - 
-The vulnerability in echo.php is most likely caused by poor input validation and sanitation. By immediately reflecting user-supplied information into HTML output without sufficient filtering, the script allows attackers to inject malicious code, as shown in the provided payload. Specifically, the script fails to properly sanitize the "input" element, allowing attackers to execute arbitrary JavaScript code via the onerror attribute of an HTML image tag.
+The vulnerability in echo.php is most likely caused by poor input validation and sanitation. By immediately reflecting user-supplied information into HTML output without sufficient filtering, the script allows attackers to inject malicious code, as shown in the provided payload. Specifically, the script fails to properly sanitize the "input" element, allowing attackers to execute arbitrary JavaScript code via the onerror attribute of an HTML image tag. In short the script word it self will be removed
 
 ```js
 <input src=".." onerror="alert('Level 4 : Hacked by Amit Gaddi')">
@@ -114,7 +114,7 @@ The vulnerability in echo.php is most likely caused by poor input validation and
 
 
 Code guess - 
-The vulnerability in echo.php is most likely caused by poor handling of user input. The given payload attempts to exploit this vulnerability by inserting JavaScript code into the onerror property of an HTML image tag. The payload uses Unicode escape sequences (\u0061) to obfuscate the alert() function call, allowing it to avoid specific filters or detection methods. This suggests that the vulnerability stems from the script's failure to properly sanitize and validate user input, allowing attackers to execute arbitrary JavaScript code on the website.
+The vulnerability in echo.php is most likely caused by poor handling of user input. The given payload attempts to exploit this vulnerability by inserting JavaScript code into the onerror property of an HTML image tag. The payload uses Unicode escape sequences (\u0061) to obfuscate the alert() function call, allowing it to avoid specific filters or detection methods. This suggests that the vulnerability stems from the script's failure to properly sanitize and validate user input, allowing attackers to execute arbitrary JavaScript code on the website.In short any alert word is removed.
 
 
 ```js
@@ -133,15 +133,13 @@ The vulnerability in echo.php is most likely caused by poor handling of user inp
 
 
 Code guess - 
-The vulnerability in echo.php appears to be caused by incorrect handling of user input. The given payload exploits this vulnerability by injecting JavaScript code into the URL route, specifically the onmouseover attribute of an HTML element. This demonstrates that the script does not effectively validate or sanitize input data, allowing attackers to execute arbitrary JavaScript code.
+The vulnerability in echo.php appears to be caused by incorrect handling of user input. The given payload exploits this vulnerability by injecting JavaScript code into the URL route, specifically the onmouseover attribute of an HTML element. This demonstrates that the script does not effectively validate or sanitize input data, allowing attackers to execute arbitrary JavaScript code.In short as any code enetered in the input field is converted to data using htmlentities.
 
 
 
 ```js
 "%20onmouseenter="alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')
 ```
-
-
 
 
 ![Screenshot](images/Screenshot61.png)   
