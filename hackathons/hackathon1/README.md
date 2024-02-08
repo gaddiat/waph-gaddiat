@@ -18,7 +18,7 @@ Repository's URL: [https://github.com/gaddiat-uc/waph.git](https://github.com/ga
 
 This is a private repository for Amit Gaddi to store all code from the course. The organization of this repository is as follows.
 
-# Hackathon 1 - Cross-site Scripting Attacks and Defenses [link](https://github.com/phungph-uc/waph/tree/main/hackathons/hackathon1)
+# Hackathon 1 - Cross-site Scripting Attacks and Defenses [link](https://github.com/gaddiat/waph-gaddiat/tree/main/hackathons/hackathon1)
 
 ## Overview  
 
