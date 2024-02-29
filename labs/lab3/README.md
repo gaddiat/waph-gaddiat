@@ -87,6 +87,8 @@ function checklogin_mysql($username, $password) {
 ```
 
 Below is screenshot of sucessfull login.
+
+
 ![Screenshot](images/Screenshot2.png)  
 
 
@@ -139,16 +141,69 @@ function checklogin_mysql($username, $password) {
   	}
 
 ```
-
+Below is the screenshot of the failed SQL Injection attack.
 
 ![Screenshot](images/Screenshot5.png)  
 
-#### Security Analysis (7.5 pts)
+#### Security Analysis
 
-- **Prepared Statement Explanation**: Discuss why prepared statements can prevent SQL injection attacks (2.5 pts)
+- **Prepared Statement Explanation**:
 
-- **Implement Sanitization**: Enhance the code to sanitize outputs, mitigating XSS risks. Provide the revised code in the report with an explanation (2 pts)
+Instead of immediately incorporating user inputs into the query string, developers may create SQL queries with placeholders for parameters by utilizing prepared statements. By using this method, you can be guaranteed that user inputs are handled as data and not like components of the SQL operation. This means that parameters must be tied to these placeholders in a different stage. This strategy is essential for preventing injection attacks and preserving the integrity of the SQL query.
 
-- **Discussions (3pts)**: Are there any programming flaws/vulnerabilities in the current code? For example, what if the username/password are empty?; what if there are any database errors?; what if the provided username is not exactly the same as the username from the database.
+When parameters are tied to placeholders in prepared statements, the underlying database driver handles the automated escaping of special characters in the incoming data. In order to stop harmful inputs from being interpreted as part of the SQL syntax, this feature is essential. This successfully neutralizes SQL injection attacks, which take advantage of security holes by introducing malicious SQL into a database query. This security precaution is essential for maintaining the integrity of the database and shielding private data from illegal access.
+
+Moreover, the database server precompiles prepared statements, generating a query execution plan that is not yet dependent on parameter values. By separating the data from the SQL query's structure, this procedure not only increases security but also boosts efficiency. Database operations are sped up because reusing the execution plan for many queries with distinct parameters eliminates the need to recompile the query. Prepared statements are an essential tool in the creation of safe and effective database-driven systems because of their double advantages.
+
+- **Implement Sanitization**: 
 
 
+
+Without any kind of sanitization, the username was echoed back to the user in the original code, which might have led to XSS vulnerabilities, particularly if the username contained HTML or JavaScript code. In order to mitigate this danger, special characters in the username are encoded using the `htmlentities()` method before it is echoed back. Characters such as {\{, {>}, {&}, {"{, and {'} are transformed into their respective HTML entities using this method. By doing this, it protects against malicious code execution and thwarts XSS attacks by guaranteeing that these characters appear in the browser as plain text.
+
+Below is revised code that sanitizes the outputs and migitaing the XSS risks.
+
+```php
+
+<?php
+	session_start();    
+	if (checklogin_mysql($_POST["username"],$_POST["password"])) {
+?>
+	<h2> Welcome <?php echo htmlentities($_POST['username']); ?> !</h2>
+<?php		
+	}else{
+		echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
+		die();
+	}
+	function checklogin_mysql($username, $password) {
+		$mysqli = new mysqli('localhost','gaddiat','1234','waph');
+		if($mysqli->connect_errno){
+			printf("Database connection failed: %s\n", $mysqli->connect_errno);
+			exit();
+		}
+		$sql = "SELECT * FROM users WHERE username=? AND password = md5(?)";
+		$stmt = $mysqli->prepare($sql);
+		$stmt->bind_param("ss", $username, $password);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if($result->num_rows ==1)
+			return TRUE;
+		return FALSE;
+  	}
+?>
+
+
+```
+
+- **Discussions**: 
+
+Indeed, there are a number of possible vulnerabilities and programming errors in the current code that need to be fixed to improve security and robustness:
+
+
+- There is no validation in place for inputs that contain null usernames or passwords. In the absence of this check, the authentication procedure could continue with insufficient data, which could result in unexpected behavior or mistakes. Verifying user inputs to make sure they are not empty is essential before moving forward with authentication.
+
+
+- The checklogin_mysql() function as it is currently implemented requires that the password and username entered exactly match those in the database. But if the username is entered differently—for example, with extra spaces or different case sensitivity—authentication will fail. Using case-insensitive or fuzzy matching for usernames, or sending out notifications when an entered username nearly matches one in the database, could enhance user experience and flexibility.
+
+
+- There are no defenses against brute force attacks in the code, including rate limitation or account lockout. Implementing such measures can improve overall security posture and lessen the chance of unwanted entry attempts.
