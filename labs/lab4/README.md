@@ -19,97 +19,129 @@ Repository's URL: [https://github.com/gaddiat-uc/waph.git](https://github.com/ga
 This is a private repository for Amit Gaddi to store all code from the course. The organization of this repository is as follows.
 
 
-## Lab 3 - Secure Web Application Development in PHP/MySQL
 
-[Lab3 Link](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab4)
+## Lab 4 -A Secure Login Systwm With Session Authentication
+
+[Lab4 Link](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab4)
 
 
 
 ## Overview
 
-This lab focuses on understanding, implementing, and securing session management in PHP web applications. Students will learn how to deploy session management, observe session handling processes, identify and mitigate session hijacking attacks, and apply secure session authentication measures.
+This lab offers a comprehensive investigation into PHP web application session management and security, along with practical exercises. Through the implementation, monitoring, and preservation of session-based authentication protocols, I acquired pragmatic understandings of crucial security protocols. I learned about the inner workings of session handshaking procedures by first examining the fundamentals of sessions using tools such as Wireshark. The exercises that follow focus on locating and fixing problems related to insecure session authentication. In order to prevent possible session hijacking attempts, these actions culminate in the deployment of strong security measures, such as the adoption of HTTPS and the application of certain session cookie settings, including the HttpOnly and Secure flags.
+
+Hands-on exercise that compares browser information saved in session data in order to identify session hijacking. I got an understanding of the intricacies of session management through these assignments, as well as the value of using safe authentication procedures and putting in place strong security countermeasures to protect web apps from frequent attack vectors.
 
 
-The hands-on exercises in this lab consist of multiple sub-tasks with grade distribution as follows. Please note that these sub-tasks and their Task have been covered in Lectures 9 (Task 1, moved from original Lab 3-Task 1), Lecture 15 (Task 2), and 16 (Task 3); asynchronous students should watch the lecture videos and slides. These hands-on steps with expected demonstration/screenshots in the report are combined in the attached slides for your convenience.
-
-## Expected Outcomes
-
-By completing this lab, students will gain practical experience in:
-- Implementing session management and authentication in PHP web applications.
-- Understanding session management processes by using tools like Wireshark to observe web traffic
-- Identifying vulnerabilities to session hijacking and implementing countermeasures, including configuring HTTPS to secure web applications.
 
 ## Task 1: Understanding Session Management in a PHP Web Application
 
-**Note: this task was introduced in Lecture 9 as Lab 3-Task 1**
 
-### 1.a. Deploy and test `sessiontest.php` (2 pts)
+### 1.a. Deploy and test `sessiontest.php`
 
-- **Sub-task**: Clone the course repository, revise and deploy `sessiontest.php` to your web server, and access it through different web browsers.
 
-- **Expected Demonstration**: A screenshot of the web page accessed from two different browsers showing different session values.
+Here I created a new php page which caputured the session of the user and displayed then the numbers of times that they have visited the page, I used two different browsers and accessed the same page.
 
-### 1.b. Observe the Session-Handshaking using Wireshark (6 pts)
+![Screenshot](images/Screenshot1.png)
 
-- **Sub-task**: Use Wireshark to capture the traffic while accessing `sessiontest.php`. Observe and analyze the first and subsequent HTTP requests and responses related to session handling. Ensure that you clear the cookies in the browser before performing this step.
 
-- **Expected Demonstration**: Screenshots from Wireshark showing the first HTTP Request/Response and the subsequent Request/Response with a session cookie, and discuss your understanding of this session handshaking process. 
+![Screenshot](images/Screenshot2.png)  
 
-### 1.c. Understanding Session Hijacking (2 pts)
 
-- **Sub-task**:  Follow the steps in the lecture to perform a session hijacking attack. 
 
-- **Expected Demonstration**: Two screenshots of the attack and the outcome.
+### 1.b. Observe the Session-Handshaking using Wireshark
+
+
+Using wireshark I captured the packets of the session handshaking, I first ran the wireshark and then opened the session page in browser and then reloaded the page, then I stopped the wireshark and saw the captured http packets and saw the request send and the response recived one where the cookie is set and another where the cookie is dispayed with the response showed to the user.
+
+![Screenshot](images/Screenshot3.png)
+
+
+![Screenshot](images/Screenshot4.png)  
+
+
+
+### 1.c. Understanding Session Hijacking
+
+
+We can session hijack using the cookies where you can capture /copy the cookie from one browser and the use the same cookie and set the cookie value same and you can now access the page hijack the session which was displalyed in the another browser. 
+
+![Screenshot](images/Screenshot6.png)
+
+
+![Screenshot](images/Screenshot7.png)  
+
+
 
 ## Task 2: Insecure Session Authentication
 
-### 2.a. Revised Login System with Session Management (10 pts)
-
-**Attention: Lab 4 is based on Lab 3; you must have Lab 3 code completed first**
-
-- **Sub-task**: Copy the `index.php` file from the lab3 or lab4 folder and revise it to implement session management for a login system; create the file `logout.php`,  as guided in Lecture 15. Deploy and test the login functionality with session.
-
-- **Expected Demonstration**: Screenshots of authenticated users should be allowed to see the page, anytime after logging in successfully; an unauthenticated user (without username/password) must be alerted
+### 2.a. Revised Login System with Session Management
 
 
-### 2.b. Session Hijacking Attacks (5 pts)
+Here I modified the `index.php` page and impletemtn the session managment where we created session and also a new link which leads to the `logout.php` page, in the session managment I created in such a way that an unauthenticated user when trys to access `index.php` page gets an alert
 
-- **Sub-task**: Simulate a session hijacking attack by manually copying the session ID from one browser and pasting it into another browser.
+![Screenshot](images/Screenshot8.png)
 
-- **Expected Demonstration**: Screenshots showing access to a session-protected page by hijacking the session ID.
+
+![Screenshot](images/Screenshot9.png)  
+
+
+
+
+### 2.b. Session Hijacking Attacks
+
+
+Here we used the cookie to hijack the session from one browsert to another, as seen in the screenshots, I captured the cookie from one browser and set the same cookie value in another browser to got access to the page without entering the credentials.
+
+
+![Screenshot](images/Screenshot10.png)
+
+
+![Screenshot](images/Screenshot11.png)  
+
+
+
+![Screenshot](images/Screenshot12.png)
+
+
+![Screenshot](images/Screenshot13.png) 
+
+
+
+![Screenshot](images/Screenshot14.png)
+
+
+ 
 
 ## Task 3: Securing Session and Session Authentication
 
-### 3.a. Data Protection and HTTPS Setup (10 pts)
-
-- **Sub-task**: Generate SSL certificates and configure your web server to use HTTPS. Access your web application over HTTPS.
-- **Expected Demonstration**: Screenshots of the SSL certificate and one of the PHP pages on HTTPS.
-
-### 3.b. Securing Session Against Session Hijacking Attacks - setting HttpOnly and Secure flags for cookies  (7.5 pts)
-- **Sub-task**: Implement measures to secure sessions, including setting the HttpOnly and Secure flags for session cookies.
-
-- **Expected Demonstration**: Screenshot of the browser showing the HttpOnly and Secure flags set for cookies.
-
-### 3.c. Securing Session Against Session Hijacking Attacks - Defense In-Depth (7.5 pts).
-
-- **Sub-task**: Revise the `index.php` to store a new session variable with browser information (after the authentication process is validated); check the information from the browser and the session (after all other checks), if they are different, it means that the session is hijacked, thus alert and redirect to the login page. 
- 
-- **Expected Demonstration**: A screenshot showing a session hijacking is detected
-
-## Report 
-
-You can write a report using Markdown format or any Word processor, i.e., you do not have to use Markdown. **Please note that demo screenshots must include your virtual machine name or your name with proper captions and be visible, i.e., in high resolution, not too blurry or with much blank space, for grading**. 
-
-Your report should follow the template provided in Lecture 2 ([https://github.com/phungph-uc/waph/blob/main/README-template.md](https://github.com/phungph-uc/waph/blob/main/README-template.md)) which should include the course name and instructor, your name and email together with your headshot (150x150 pixels), and sub-sections of the assignment's overview with the URL to the lab's folder in your repository, and each task and sub-task. **To get full grades for each sub-task, briefly describe how you completed it and your understanding of the outcome, and the corresponding code is in your repository.**
-
-## Submission
-
-Your report must be exported in  PDF with contents and screenshots correctly rendered in proper order. 
-
-The PDF file should be named `your-username-waph-lab4.pdf`, e.g., `phungph-waph-lab4.pdf`, and uploaded to Canvas to submit by the deadline. 
-
-### Overview
-
-I became fully involved in the practical elements of creating, administering, and protecting online applications using PHP and MySQL in Lab 3 of the Secure online Application Development course. The lab is set up to walk me through the process of creating a basic login system that is purposefully weak to expose typical online vulnerabilities like SQL Injection and Cross-Site Scripting (XSS) attacks. Students first learn the fundamentals of database construction and maintenance before moving on to create an unsafe login system, which I then use in practical hacking activities. At the end of the lab, prepared statements for SQL injection prevention and output sanitization to reduce XSS threats are implemented, strengthening the application's security.By taking such a thorough approach, the lab not only made me aware of the challenges that online apps face, but it also gave me the basic security knowledge I needed to address these flaws and create a strong basis for developing safe web applications.  
+### 3.a. Data Protection and HTTPS Setup
 
 
+
+Here we generated a key and stored in apache and configured the ssl file and then accessed the web page with HTTPS and as the certificate is not valid, I have to add an exception and below screenshot is the certificate that is showed in browser, moreover we can access our page with https too.
+
+![Screenshot](images/Screenshot15.png) 
+
+
+
+![Screenshot](images/Screenshot16.png)
+
+
+
+### 3.b. Securing Session Against Session Hijacking Attacks - setting HttpOnly and Secure flags for cookies  
+
+Here in the `index.php` I added a code to set the parameters of the cookie before starting the sessuin, here the values set were - time, path, domain, httponly and secure. after deployin the code you can now see as seen in the below screenshot the value is set to ture and now the cookie id cannot be accessed.
+
+![Screenshot](images/Screenshot17.png) 
+
+
+
+![Screenshot](images/Screenshot18.png)
+
+### 3.c. Securing Session Against Session Hijacking Attacks - Defense In-Depth
+
+
+After modifying the code to add the new protectiion layer, now even if we try to access the page with the another browser we would not be able to access the page even if we have the cookie id as here we are using browser identification.
+
+![Screenshot](images/Screenshot19.png) 
