@@ -1,7 +1,10 @@
 <?php
+
+	$username = $_POST["username"];
+	$password = $_POST["password"];
 	
 	//session_set_cookie_params(15*60,"/","192.168.33.128"TRUE,TRUE);
-	session_set_cookie_params([
+	/*session_set_cookie_params([
 	    'lifetime' => 15*60,
 	    'path' => '/',
 	    'domain' => 'gaddiat.waph.io',
@@ -10,19 +13,29 @@
 	]);
 
 	session_start();   
+*/
+	if (isset($username) and isset($password)){
 
-	if (isset($_POST["username"]) and isset($_POST["password"])){
-		if (checklogin_mysql($_POST["username"],$_POST["password"])) {
-			$_SESSION['authenticated'] = TRUE;
+		//echo "Debug -> got username-->$username; and password -->$password";
+
+		if (addnewuser($username,$password)) {
+
+			echo "Registration Success!!";
+		/*	$_SESSION['authenticated'] = TRUE;
 			$_SESSION['username'] = $_POST["username"];
-			$_SESSION['browser'] = $_SERVER["HTTP_USER_AGENT"];
+			$_SESSION['browser'] = $_SERVER["HTTP_USER_AGENT"];*/
 		}else{
-			session_destroy();
+			echo "Registration Failed!!";
+			/*session_destroy();
 			echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
-			die();
+			die();*/
 		}
 	}
-	if (!isset($_SESSION['authenticated']) or $_SESSION['authenticated'] != TRUE) {
+	else {
+
+		echo "No Username or Password!!";
+	}
+/*	if (!isset($_SESSION['authenticated']) or $_SESSION['authenticated'] != TRUE) {
 		session_destroy();
 		echo "<script>alert('You have not loggedin,please login first!')</script>";
 		header("Refresh: 0; url=form.php");
@@ -34,26 +47,25 @@
     echo "<script>alert('Session hijacking is detected')</script>";
     header("Refresh: 0; url=form.php");
     die();
-}
+}*/
 
 
-	function checklogin_mysql($username, $password) {
+	function addnewuser($username, $password) {
 		$mysqli = new mysqli('localhost','gaddiat','1234','waph');
 		if($mysqli->connect_errno){
 			printf("Database connection failed: %s\n", $mysqli->connect_errno);
-			exit();
+			return FALSE;
 		}
-		$sql = "SELECT * FROM users WHERE username=? AND password = md5(?)";
+		$sql = "INSERT INTO users (username,password) VALUES (?,md5(?));";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->bind_param("ss", $username, $password);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows ==1)
+		//$stmt->execute();
+		//$result = $stmt->get_result();
+		if($stmt->execute())
 			return TRUE;
 		return FALSE;
   	}
 
 ?>
-		<h2> Welcome <?php echo htmlentities($_POST['username']); ?> !</h2>
-		<h2>Your Password is <?php echo htmlentities($_POST['password']); ?> !</h2>
+		
 		<a href="logout.php">logout</a>
