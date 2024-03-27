@@ -47,7 +47,7 @@ This lab is structured as a hackathon where participants will attack and then re
    **Demonstration Video:** 
    [Link to Step-4&5 video](https://github.com/gaddiat/waph-gaddiat/tree/main/hackathons/hackathon3/videos/H3.webm)
 
-- **Bonus [2.5 points]:** After hijacking the session to login to the system, analyze if the application is vulnerable to SQL injection attacks and substantiate your reasoning.
+- **Bonus:**The application is NOT vulnerable to SQL injection attacks as I tried to login page but I was not able to `https://waph-hackathon.eastus.cloudapp.azure.com/admin/login.php` with userid `gaddiat" or 1=1 LIMIT 1;#` and got Invalid `username/password` . Moreover the `https://waph-hackathon.eastus.cloudapp.azure.com/post.php?id=5` page didn't respond to any appended sql union query changes to the url, it looks like the id is neither injectable or dynamic.
 
 
 
@@ -95,7 +95,7 @@ This lab is structured as a hackathon where participants will attack and then re
 
     **Security Reviews and Audits:** Integrate security evaluations and audits throughout the development process. Use automatic code scanning and vulnerability detection technologies, as well as manual security evaluations on a regular basis.
 
-    **Incident Response Plan:**Create and manage an incident response strategy. This strategy should contain measures for responding to a security breach, such as how to promptly patch vulnerabilities and notify impacted users.
+    **Incident Response Plan:** Create and manage an incident response strategy. This strategy should contain measures for responding to a security breach, such as how to promptly patch vulnerabilities and notify impacted users.
 
     **Collaboration and Communication:** Encourage team members to communicate openly and collaboratively about security problems. Security should be a shared responsibility, with all team members helping to ensure that the program is developed securely.
 
