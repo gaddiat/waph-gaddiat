@@ -37,7 +37,7 @@ This hackathon provides participants with hands-on experience performing and com
       **2** POST method used 
       **3** newpassword
 
-   - **Step 2 [Victim]:** Here in this step, I have written the code[in the repo](https://github.com/gaddiat/waph-gaddiat/tree/main/hackathons/hackathon3/gaddiat-crsf.html) where the victim's password is changed, and I hosted this page on my localhost.
+   - **Step 2 [Victim]:** Here in this step, I have written the code[in the repo](https://github.com/gaddiat/waph-gaddiat/blob/main/hackathons/hackathon4/gaddiat-crsf.html) where the victim's password is changed, and I hosted this page on my localhost.
 
 
 
@@ -50,7 +50,7 @@ This hackathon provides participants with hands-on experience performing and com
    - **Step 3 [Victim]:** Here in this step, I have acted as a victim and used the CSRF login page to log in and then access the comment section of the blog page. From the comment section, I clicked on the link where I was redirected to the CSRF page where I got an alert; then from there, I was directed to the change password page where the password was already changed. Here, I then logged out from the page, and I tried to log into the same page with the same password, but an alert was shown with "invalid username/password."
 
    **Demonstration Video:** 
-   [Link to Step-3 video](https://github.com/gaddiat/waph-gaddiat/tree/main/hackathons/hackathon3/videos/H4.mov)
+   [Link to Step-3 video](https://github.com/gaddiat/waph-gaddiat/blob/main/hackathons/hackathon4/Videos/H4.mov)
 
 
 
