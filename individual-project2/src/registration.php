@@ -3,66 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Registration page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 400px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h1 {
-      text-align: center;
-      color: #ff1493; 
-    }
-    #digit-clock {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ff6347; 
-    }
-    .form {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .text_field, .button {
-      padding: 10px;
-      margin: 10px;
-      width: 80%;
-      border: none;
-      border-radius: 50px; 
-      outline: none;
-      box-sizing: border-box;
-    }
-    .text_field {
-      border: 2px solid #87cefa; 
-    }
-    .button {
-      background-color: #ff1493; 
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .button:hover {
-      background-color: #ff6347; 
-    }
-    .error-message {
-      color: red;
-      margin-top: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
   <script type="text/javascript">
     function displayTime() {
       document.getElementById('digit-clock').innerHTML = "Current time: " + new Date().toLocaleString();
