@@ -19,129 +19,53 @@ Repository's URL: [https://github.com/gaddiat-uc/waph.git](https://github.com/ga
 This is a private repository for Amit Gaddi to store all code from the course. The organization of this repository is as follows.
 
 
+# Individual Project 2: Full-stack Web Application Development
+[Individual Project 2 Link](https://github.com/gaddiat/waph-gaddiat/tree/main/individual-project2)
 
-## Lab 4 -A Secure Login Systwm With Session Authentication
+## Project Overview
 
-[Lab4 Link](https://github.com/gaddiat/waph-gaddiat/tree/main/labs/lab4)
+In this individual project, you will extend your knowledge and skills gained from Labs 3 and 4 to develop a full-stack web application using PHP and MySQL. The project involves creating a simple yet secure login system encompassing user registration, login functionality, profile viewing and editing, and password management. Emphasis will be placed on implementing robust security measures to ensure the integrity and confidentiality of user data. Requirements and grading distribution are outlined below.
 
+Requirements, guidelines, and tutorials were introduced in Lectures 16-21. Make sure that you follow the lectures for detailed instructions. Slides from these lectures are combined and attached for reference. Requirements with grading distribution are outlined below.
 
+## Functional Requirements
 
-## Overview
+- **(15 pts) User Registration:** Develop a user registration system that allows new users to create accounts by providing a username, password, name, and email address. Implement both client-side and server-side input validation to ensure data integrity.
 
-This lab offers a comprehensive investigation into PHP web application session management and security, along with practical exercises. Through the implementation, monitoring, and preservation of session-based authentication protocols, I acquired pragmatic understandings of crucial security protocols. I learned about the inner workings of session handshaking procedures by first examining the fundamentals of sessions using tools such as Wireshark. The exercises that follow focus on locating and fixing problems related to insecure session authentication. In order to prevent possible session hijacking attempts, these actions culminate in the deployment of strong security measures, such as the adoption of HTTPS and the application of certain session cookie settings, including the HttpOnly and Secure flags.
+- **(15 pts) Login:** Implement a secure login system that authenticates users and allows them to access their profiles. Use session management to maintain user state across the application.
 
-Hands-on exercise that compares browser information saved in session data in order to identify session hijacking. I got an understanding of the intricacies of session management through these assignments, as well as the value of using safe authentication procedures and putting in place strong security countermeasures to protect web apps from frequent attack vectors.
+- **(15 pts) Profile Management:** Enable users to view and edit their profile information, such as name and email.
 
+- **(15 pts) Password Update:** Allow users to change their passwords securely.
 
+## Security and Non-technical Requirements
 
-## Task 1: Understanding Session Management in a PHP Web Application
+- **(5 pts) Security:** The application must be deployed over HTTPS. Passwords must be hashed before being stored in the database. Do not use the MySQL root account in your PHP code. Ensure all SQL operations use prepared statements to mitigate SQL injection attacks.
 
+- **(5 pts) Input Validation:** Implement comprehensive input validation on both the client and server sides to prevent common web vulnerabilities such as XSS attacks.
 
-### 1.a. Deploy and test `sessiontest.php`
+- **(5 pts) Database Design:** Design and implement a MySQL database to store user information securely. Ensure that database interactions are performed using secure practices.
 
+- **(5 pts) Front-end Development:** Use HTML, CSS (with an option to integrate a CSS framework or template), and JavaScript to create an intuitive and responsive user interface. Include necessary client-side validations using HTML5 and JavaScript.
 
-Here I created a new php page which caputured the session of the user and displayed then the numbers of times that they have visited the page, I used two different browsers and accessed the same page.
+- **(5 pts) Session Management:** Implement secure session management for user authentication. Protect against session hijacking and fixation attacks.
 
-![Screenshot](images/Screenshot1.png)
+- **(5 pts) CSRF Protection:** Incorporate mechanisms  such as using anti-CSRF tokens to protect against Cross-Site Request Forgery (CSRF) attacks in database modification use cases.
 
+## (10 pts) Deliverables and Report
 
-![Screenshot](images/Screenshot2.png)  
+You can write a report using Markdown format or any Word processor, i.e., you do not need to use Markdown to write your report. Your report should follow the template/outline provided in Lecture 2 ([https://github.com/phungph-uc/waph/blob/main/README-template.md](https://github.com/phungph-uc/waph/blob/main/README-template.md)) which should include the course name and instructor, your name and email together with your headshot (150x150 pixels), and sub-sections of the project's overview, and each requirement.
 
+There should be an overview sub-section where you must write an overview of the assignment and the outcomes you learned from it. Include the direct clickable link to the project folder on GitHub.com so that it can be viewed when grading, for example, [https://github.com/phungph-uc/waph-phungph/tree/main/individual-project2](https://github.com/phungph-uc/waph-phungph/tree/main/individual-project2). All project code, including HTML, CSS, PHP, and SQL scripts must be available on your private repository and **included in the report as an appendix**.
 
+For each requirement, write a brief summary of how you complete it. You are welcome to include code snippets and screenshots to demonstrate the outcome, however, they are not required.
 
-### 1.b. Observe the Session-Handshaking using Wireshark
+**Demonstration Video**: Record a 5-minute video demonstrating the functional requirements implemented for the project and include the video link (uploaded online) in the report for grading.
 
+## Submission
 
-Using wireshark I captured the packets of the session handshaking, I first ran the wireshark and then opened the session page in browser and then reloaded the page, then I stopped the wireshark and saw the captured http packets and saw the request send and the response recived one where the cookie is set and another where the cookie is dispayed with the response showed to the user.
+You need to submit **two**  files for grading:
 
-![Screenshot](images/Screenshot3.png)
-
-
-![Screenshot](images/Screenshot4.png)  
-
-
-
-### 1.c. Understanding Session Hijacking
-
-
-We can session hijack using the cookies where you can capture /copy the cookie from one browser and the use the same cookie and set the cookie value same and you can now access the page hijack the session which was displalyed in the another browser. 
-
-![Screenshot](images/Screenshot6.png)
-
-
-![Screenshot](images/Screenshot7.png)  
-
-
-
-## Task 2: Insecure Session Authentication
-
-### 2.a. Revised Login System with Session Management
-
-
-Here I modified the `index.php` page and impletemtn the session managment where we created session and also a new link which leads to the `logout.php` page, in the session managment I created in such a way that an unauthenticated user when trys to access `index.php` page gets an alert
-
-![Screenshot](images/Screenshot8.png)
-
-
-![Screenshot](images/Screenshot9.png)  
-
-
-
-
-### 2.b. Session Hijacking Attacks
-
-
-Here we used the cookie to hijack the session from one browsert to another, as seen in the screenshots, I captured the cookie from one browser and set the same cookie value in another browser to got access to the page without entering the credentials.
-
-
-![Screenshot](images/Screenshot10.png)
-
-
-![Screenshot](images/Screenshot11.png)  
-
-
-
-![Screenshot](images/Screenshot12.png)
-
-
-![Screenshot](images/Screenshot13.png) 
-
-
-
-![Screenshot](images/Screenshot14.png)
-
-
++ Your report in the PDF mentioned above. The PDF file should be named `your-username-waph-project2.pdf`, e.g., `phungph-waph-project2.pdf`.
  
-
-## Task 3: Securing Session and Session Authentication
-
-### 3.a. Data Protection and HTTPS Setup
-
-
-
-Here we generated a key and stored in apache and configured the ssl file and then accessed the web page with HTTPS and as the certificate is not valid, I have to add an exception and below screenshot is the certificate that is showed in browser, moreover we can access our page with https too.
-
-![Screenshot](images/Screenshot15.png) 
-
-
-
-![Screenshot](images/Screenshot16.png)
-
-
-
-### 3.b. Securing Session Against Session Hijacking Attacks - setting HttpOnly and Secure flags for cookies  
-
-Here in the `index.php` I added a code to set the parameters of the cookie before starting the sessuin, here the values set were - time, path, domain, httponly and secure. after deployin the code you can now see as seen in the below screenshot the value is set to ture and now the cookie id cannot be accessed.
-
-![Screenshot](images/Screenshot17.png) 
-
-
-
-![Screenshot](images/Screenshot18.png)
-
-### 3.c. Securing Session Against Session Hijacking Attacks - Defense In-Depth
-
-
-After modifying the code to add the new protectiion layer, now even if we try to access the page with the another browser we would not be able to access the page even if we have the cookie id as here we are using browser identification.
-
-![Screenshot](images/Screenshot19.png) 
++ The source code of the entire project in a compressed ZIP file. The PDF file should be named `your-username-waph-project2.zip`, e.g., `phungph-waph-project2.zip`.
