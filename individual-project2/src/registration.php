@@ -58,5 +58,9 @@
       <button class="button" type="submit">Register</button>
     </form>
   </div>
+  <div class="container">
+        <br>
+        <a href="login.php" class="login-link">Already a user? Login here</a>
+  </div>
 </body>
 </html>

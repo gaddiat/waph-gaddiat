@@ -6,24 +6,54 @@ if($mysqli->connect_errno) {
     return FALSE;
 }
 
-function addnewuser($username, $password, $fullname, $primaryemail) {
+
+function addNewUser($username, $password, $fullname, $primaryEmail) {
     global $mysqli;
-    // Hash the password
-    $hashed_password = md5($password);
     
-    $prepared_sql = "INSERT INTO users (username, password, fullname, primaryemail) VALUES (?, ?, ?, ?)";
-    $stmt = $mysqli->prepare($prepared_sql);
-    $stmt->bind_param("ssss", $username, $hashed_password, $fullname, $primaryemail); // Bind the hashed password
-    if ($stmt->execute()) return TRUE;
-    return FALSE;
+    // Basic validation checks
+    if (empty($username) || empty($password) || empty($fullname) || empty($primaryEmail)) {
+        return false; // Ensures that no field is empty
+    }
+    
+    if (!filter_var($primaryEmail, FILTER_VALIDATE_EMAIL)) {
+        return false; // Ensures the email is in a valid format
+    }
+    
+    // Here you can add additional validation as needed, e.g., minimum lengths
+    if (strlen($password) < 8) {
+        return false; // Password must be at least 8 characters
+    }
+
+    // Hash the password using a more secure method
+    $hashedPassword = md5($password);
+    
+    $preparedSql = "INSERT INTO users (username, password, fullname, primaryEmail) VALUES (?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($preparedSql);
+    if (!$stmt) {
+        return false; // Could not prepare the statement
+    }
+    
+    $stmt->bind_param("ssss", $username, $hashedPassword, $fullname, $primaryEmail); // Bind the variables
+    
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-function checklogin_mysql($username, $password) {
+
+function checklogin($username, $password) {
         global $mysqli;
         if($mysqli->connect_errno){
             printf("Database connection failed: %s\n", $mysqli->connect_errno);
             exit();
         }
+
+        if (empty($username) || empty($password)) {
+        return false; // Return false if username or password is empty
+        }
+
         $prepared_sql = "SELECT * FROM users WHERE username=? AND password = md5(?)";
         $stmt = $mysqli->prepare($prepared_sql);
         $stmt->bind_param("ss", $username, $password);
@@ -33,6 +63,9 @@ function checklogin_mysql($username, $password) {
             return TRUE;
         return FALSE;
     }
+
+
+
 
 function updatePassword($username, $newPassword) {
     global $mysqli;
@@ -74,6 +107,18 @@ function updateUserProfile($username, $fullname, $primaryemail) {
     } else {
         return false;
     }
+}
+
+// Function to fetch user details by username
+function getUserDetails($username) {
+    global $mysqli;
+    $stmt = $mysqli->prepare("SELECT fullname, primaryemail FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $userDetails = $result->fetch_assoc();
+    $stmt->close();
+    return $userDetails;
 }
 
 ?>
