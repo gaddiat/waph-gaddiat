@@ -1,6 +1,6 @@
 <?php
 	
-	//session_set_cookie_params(15*60,"/","192.168.33.128"TRUE,TRUE);
+	
 	session_set_cookie_params([
 	    'lifetime' => 15*60,
 	    'path' => '/',
